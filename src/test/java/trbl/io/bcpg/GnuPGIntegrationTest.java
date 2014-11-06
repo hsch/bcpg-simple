@@ -51,7 +51,7 @@ public class GnuPGIntegrationTest {
       final File encryptedDataFile = gnuPg.newTempFile();
       final OutputStream encryptedDataStream = new FileOutputStream(encryptedDataFile);
       try {
-        senderKey.signEncrypt(recipientPublicKey).run(SENDER_PASSPHRASE, new ByteArrayInputStream(MESSAGE), encryptedDataStream);
+        senderKey.signEncryptFor(recipientPublicKey).run(SENDER_PASSPHRASE, new ByteArrayInputStream(MESSAGE), encryptedDataStream);
       }
       finally {
         encryptedDataStream.close();
@@ -101,7 +101,7 @@ public class GnuPGIntegrationTest {
       gnuPg.encrypt(RECIPIENT_ID, plainDataFile, encryptedDataFile, SENDER_PASSPHRASE);
 
       final ByteArrayOutputStream result = new ByteArrayOutputStream();
-      recipientKey.decryptVerify(senderPublicKey).run(RECIPIENT_PASSPHRASE, new FileInputStream(encryptedDataFile), result);
+      recipientKey.decryptVerifyFrom(senderPublicKey).run(RECIPIENT_PASSPHRASE, new FileInputStream(encryptedDataFile), result);
 
       Assert.assertArrayEquals(MESSAGE, result.toByteArray());
 

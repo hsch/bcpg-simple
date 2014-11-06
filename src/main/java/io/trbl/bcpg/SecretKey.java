@@ -6,8 +6,8 @@ public interface SecretKey extends Key {
 
   PublicKey getPublicKey();
 
-  SecretTransform signEncrypt(String publicKey) throws IOException;
+  SecretTransform signEncryptFor(String publicKey) throws IOException;
 
-  SecretTransform decryptVerify(String publicKey) throws IOException;
+  SecretTransform decryptVerifyFrom(String publicKey) throws IOException;
 
 }

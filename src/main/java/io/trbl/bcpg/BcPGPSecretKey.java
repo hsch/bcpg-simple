@@ -33,11 +33,11 @@ class BcPGPSecretKey implements SecretKey {
     return new BcPGPPublicKey(secretKey.getPublicKey());
   }
 
-  public SecretTransform signEncrypt(final String publicKeyInputStream) throws IOException {
+  public SecretTransform signEncryptFor(final String publicKeyInputStream) throws IOException {
     return new BcPGPSignEncryptTransform(BcPGPUtils.extractPGPObject(PGPPublicKeyRing.class, publicKeyInputStream).getPublicKey(), secretKey);
   }
 
-  public SecretTransform decryptVerify(final String publicKeyInputStream) throws IOException {
+  public SecretTransform decryptVerifyFrom(final String publicKeyInputStream) throws IOException {
     return new BcPGPDecryptVerifyTransform(BcPGPUtils.extractPGPObject(PGPPublicKeyRing.class, publicKeyInputStream).getPublicKey(), secretKey);
   }
 
