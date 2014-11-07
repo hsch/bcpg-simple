@@ -8,8 +8,8 @@
   <artifactId>bcpg-simple-jdk15on</artifactId>
   <version>1.51.0-SNAPSHOT</version>
   <packaging>jar</packaging>
-  <name>Simple BCPG</name>
-  <description></description>
+  <name>BCPG Simple</name>
+  <description>A simple, lightweight wrapper around BouncyCastle's OpenPGP support.</description>
   <url>https://github.com/hsch/bcpg-simple</url>
   <licenses>
     <license>
@@ -18,9 +18,27 @@
       <distribution>repo</distribution>
     </license>
   </licenses>
+  <developers>
+    <developer>
+      <name>Hendrik Schnepel</name>
+      <email>hendrik.schnepel@gmail.com</email>
+    </developer>
+  </developers>
   <scm>
-    <url>https://github.com/hsch/bcpg-simple.git</url>
+    <connection>scm:git:git@github.com:hsch/bcpg-simple.git</connection>
+    <developerConnection>scm:git:git@github.com:hsch/bcpg-simple.git</developerConnection>
+    <url>git@github.com:hsch/bcpg-simple.git</url>
   </scm>
+  <distributionManagement>
+    <snapshotRepository>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+    </snapshotRepository>
+    <repository>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+    </repository>
+  </distributionManagement>
   <properties>
     <project.build.sourceEncoding>utf-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>utf-8</project.reporting.outputEncoding>
@@ -76,6 +94,54 @@
             </goals>
           </execution>
         </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>attach-sources</id>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>attach-javadocs</id>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-gpg-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>sign-artifacts</id>
+            <phase>package</phase>
+            <goals>
+              <goal>sign</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.sonatype.plugins</groupId>
+        <artifactId>nexus-staging-maven-plugin</artifactId>
+        <version>1.6.3</version>
+        <extensions>true</extensions>
+        <configuration>
+          <serverId>ossrh</serverId>
+          <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+          <autoReleaseAfterClose>false</autoReleaseAfterClose>
+        </configuration>
       </plugin>
     </plugins>
   </build>
