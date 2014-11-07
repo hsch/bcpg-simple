@@ -11,6 +11,9 @@ public class KeyFactoryFactory {
     }
   }
 
+  /**
+   * This method creates a new instance of a {@link KeyFactory}.
+   */
   public static KeyFactory newInstance() {
     return new BcPGPKeyFactory();
   }
