@@ -1,6 +1,7 @@
 bcpg-simple
 ===========
 
+[![Version](https://badge.fury.io/gh/hsch%2Fbcpg-simple.svg)](http://badge.fury.io/gh/hsch%2Fbcpg-simple)
 [![Build Status](https://travis-ci.org/hsch/bcpg-simple.svg?branch=master)](https://travis-ci.org/hsch/bcpg-simple)
 
 About
